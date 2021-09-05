@@ -13,7 +13,5 @@ public interface UserMapper {
 
     @Select("select * from user where token=#{token}")
     User findByToken(@Param("token") String token);
-
-    //@Select("select * from user where token = #{token}")
-   // User findByToken(@Param("token") String token);//如果不是类 则需要加入参数注解Param
+  //如果不是类 则需要加入参数注解Param
 }
