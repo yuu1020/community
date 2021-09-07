@@ -16,7 +16,6 @@ import java.util.List;
 
 @Controller
 public class IndexController {
-
     @Autowired
     private UserMapper userMapper;
 
@@ -35,7 +34,6 @@ public class IndexController {
                     }
                     break;
                 }
-
             }
         }
         List<QuestionDTO> questionList=questionService.list();

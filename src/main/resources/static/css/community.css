@@ -15,5 +15,7 @@ body{
     height: 38px;
 }
 .text-desc{
-    color:blueviolet;
+    font-size: 12px;
+    font-weight: normal;
+    color: #999;
 }
