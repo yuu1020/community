@@ -3,8 +3,10 @@
 <head>
     <title>NGA大法庭</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <ling rel="stylesheet" href="community.css"/>
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <ling rel="stylesheet" href="css/bootstrap-theme.min.css"/>
+
     <script src="js/bootstrap.min.js" type="application/javascript"></script>
 </head>
 <body>
@@ -50,17 +52,30 @@
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
             <h2><span class="glyphicon glyphicon-list" aria-hidden="true"></span>主题</h2>
             <hr>
-            <form></form>
+            <div class="media" th:each="question : ${questions}">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="media-object img-rounded/"
+                             th:src="${question.user.avatarUrl}" width="40px" height="40px">
+                    </a>
+                </div>
+
+                <div class="media-body">
+                    <h4 class="media-heading" th:text="${question.title}"></h4>
+                    <span th:text="${question.description}"></span><br>
+                    <span class="text-desc"><span th:text="${question.commentCount}"></span>个回复</span>
+                </div>
+            </div>
         </div>
-        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-            <h3>热门话题</h3>
-            -------------------<br>
-            -------------------<br>
-            -------------------<br>
-            -------------------<br>
-            -------------------<br>
-            -------------------<br>
-        </div>
+            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                <h3>热门话题</h3>
+                -------------------<br>
+                -------------------<br>
+                -------------------<br>
+                -------------------<br>
+                -------------------<br>
+                -------------------<br>
+            </div>
     </div>
 </div>
 </body>
