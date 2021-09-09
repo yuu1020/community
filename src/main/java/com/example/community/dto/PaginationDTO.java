@@ -34,7 +34,7 @@ public class PaginationDTO {
             showPrecious=true;
         }
         //是否显示>
-        if(page<=totalPage){
+        if(page==totalPage){
             showNextPage=false;
         }else{
             showNextPage=true;

@@ -67,12 +67,12 @@
             </div>
             <nav aria-label="Page navigation">
                 <ul class="pagination ">
-                    <li th:if="pagination.showFirstPage">
+                    <li th:if="${pagination.showFirstPage}">
                         <a href="/?page=1" aria-label="First">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
-                    <li th:if="pagination.showPrecious">
+                    <li th:if="${pagination.showPrecious}">
                         <a th:href="@{/(page=${pagination.page -1})}" aria-label="Precious">
                             <span aria-hidden="true">&lt;</span>
                         </a>
@@ -82,13 +82,13 @@
                         </a>
                     </li>
 
-                    <li th:if="pagination.showNextPage">
+                    <li th:if="${pagination.showNextPage}">
                         <a th:href="@{/(page=${pagination.page +1})}" aria-label="Next">
                             <span aria-hidden="true">&gt;</span>
                         </a>
                     </li>
-                    <li th:if="pagination.showEndPage">
-                    <a th:href="@{/(page=${pagination.totalPage})}" aria-label="Precious">
+                    <li th:if="${pagination.showEndPage}">
+                    <a th:href="@{/(page=${pagination.totalPage})}" aria-label="End">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
