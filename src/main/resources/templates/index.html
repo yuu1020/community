@@ -3,9 +3,10 @@
 <head>
     <title>NGA大法庭</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
-    <link rel="stylesheet" href="css/community.css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/community.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="js/bootstrap.min.js" type="application/javascript"></script>
 </head>
 <body>
@@ -13,12 +14,12 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">NGA大法庭</span>
+                <span class="sr-only" >NGA大法庭</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="localhost:8887">NGA大法庭</a>
+            <a class="navbar-brand" href="/">NGA大法庭</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -33,7 +34,10 @@
                 <a href="/publish">发布</a>
                 </li>
                 <li class="dropdown" th:if="${session.user!=null}">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" th:text="${session.user.getName()}"><span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span th:text="'AAAAb'+${session.user.getName()}"></span>
+                        <span class="caret"></span>
+                    </a>
                     <ul class="dropdown-menu">
                         <li><a href="#">消息提醒</a></li>
                         <li><a href="#">个人设置</a></li>
@@ -46,7 +50,7 @@
         </div>
     </div>
 </nav>
-<div class="container-fluid">
+<div class="container-fluid main">
     <div class="row">
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
             <h2><span class="glyphicon glyphicon-list" aria-hidden="true"></span>主题</h2>
@@ -55,7 +59,7 @@
                 <div class="media-left">
                     <a href="#">
                         <img class="media-object img-rounded/"
-                             th:src="${question.user.avatarUrl}" width="40px" height="40px">
+                             th:src="${question.user.avatarUrl}" width="43px" height="43px">
                     </a>
                 </div>
 

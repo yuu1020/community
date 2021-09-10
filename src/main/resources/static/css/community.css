@@ -8,11 +8,9 @@ body{
     margin:30px;
 }
 .pull-right {
-    float: right !important;
-}
-.media-object {
-    width: 38px;
-    height: 38px;
+    margin-right: auto;
+    margin-bottom: 15px;
+
 }
 .text-desc{
     font-size: 12px;
