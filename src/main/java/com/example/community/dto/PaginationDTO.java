@@ -12,6 +12,7 @@ public class PaginationDTO {
     private boolean showFirstPage;
     private boolean showNextPage;
     private boolean showEndPage;
+    private boolean show;
     private Integer page;
     private List<Integer> pages=new ArrayList<>();
     private Integer totalPage;
@@ -23,6 +24,8 @@ public class PaginationDTO {
         if(page>=totalPage)page=totalPage;
         this.page=page;
         pages.add(page);
+        if(page==0)show=false;
+        else show=true;
         for(int i=1;i<=3;i++){
             if(page-i>0)pages.add(0,page-i);
             if(page+i<=totalPage)pages.add(page+i);

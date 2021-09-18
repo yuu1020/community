@@ -3,9 +3,9 @@
 <head>
     <title>发布 - NGA大法庭</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
-    <link rel="stylesheet" href="css/community.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="/css/community.css"/>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="js/bootstrap.min.js" type="application/javascript"></script>
 </head>
@@ -17,6 +17,7 @@
         <h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>发起</h2>
         <hr>
         <form action="/publish" method="post">
+            <input type="hidden" name="id" th:value="${id}">
             <div class="form-group">
             <label for="title">主题名称</label>
             <input type="text" class="form-control" th:value="${title}" id="title" name="title" placeholder="输入主题名称...">
