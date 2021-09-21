@@ -2,8 +2,11 @@ package com.example.community.controller;
 
 import com.example.community.dto.PaginationDTO;
 import com.example.community.mapper.UserMapper;
+import com.example.community.model.Question;
+import com.example.community.model.QuestionExample;
 import com.example.community.model.User;
 import com.example.community.service.QuestionService;
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 public class ProfileController {
@@ -37,7 +41,7 @@ public class ProfileController {
             model.addAttribute("section","replies");
             model.addAttribute("sectionName","最新回复");
         }
-        PaginationDTO pagination = questionService.listByUserId(user.getId(), page, size);
+        PaginationDTO pagination = questionService.listByUserId(user.getId().longValue(), page, size);
         model.addAttribute("pagination",pagination);
         return "profile";
     }

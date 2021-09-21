@@ -43,7 +43,7 @@ public class AuthorizeController {
         accessTokenDTo.setRedirect_uri("http://localhost:8887/callback");
         String accessToken = githubProvider.getAccessToken(accessTokenDTo);
         GithubUser githubUser = githubProvider.getUser(accessToken);
-        if(githubUser.getName()!=null)
+        if (githubUser != null && githubUser.getId() != null)
         {
             User user = new User();
             String token = UUID.randomUUID().toString();

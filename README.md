@@ -23,3 +23,5 @@ sHIFT+f6 (快速修改名)
 
 
 ```
+
+mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate

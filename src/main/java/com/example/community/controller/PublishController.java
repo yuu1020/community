@@ -3,6 +3,7 @@ package com.example.community.controller;
 import com.example.community.mapper.QuestionMapper;
 import com.example.community.mapper.UserMapper;
 import com.example.community.model.Question;
+import com.example.community.model.QuestionExample;
 import com.example.community.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 public class PublishController {
@@ -30,7 +32,10 @@ public class PublishController {
     @GetMapping("/publish/{id}")
     public String edit(@PathVariable(name="id")Integer id,
                        Model model){
-        Question question=questionMapper.getByQuestionId(id);
+        QuestionExample example = new QuestionExample();
+        example.createCriteria().andIdEqualTo(id.longValue());
+        Question question=new Question();
+        question= questionMapper.selectByPrimaryKey(id.longValue());
         model.addAttribute("title",question.getTitle());
         model.addAttribute("description",question.getDescription());
         model.addAttribute("tag",question.getTag());
@@ -69,15 +74,17 @@ public class PublishController {
         question.setTitle(title);
         question.setDescription(description);
         question.setTag(tag);
-        question.setCreator(user.getId());
-        question.setGmtCreate(System.currentTimeMillis());
-        question.setGmtModified(question.getGmtCreate());
+        question.setCreator(user.getId().longValue());
+        question.setGmtModified(System.currentTimeMillis());
         question.setId(id);
         if(question.getId()!=null) {
-            questionMapper.update(question);
+            QuestionExample questionExample=new QuestionExample();
+            questionExample.createCriteria().andIdEqualTo(question.getId());
+            questionMapper.updateByExampleSelective(question,questionExample);
         }
         else {
-            questionMapper.create(question);
+            question.setGmtCreate(System.currentTimeMillis());
+            questionMapper.insertSelective(question);
         }
         return "redirect:/";
     }
