@@ -1,5 +1,7 @@
 package com.example.community.controller;
 
+import com.example.community.exception.CustomizeErrorCode;
+import com.example.community.exception.CustomizeException;
 import com.example.community.mapper.QuestionMapper;
 import com.example.community.mapper.UserMapper;
 import com.example.community.model.Question;
@@ -80,7 +82,10 @@ public class PublishController {
         if(question.getId()!=null) {
             QuestionExample questionExample=new QuestionExample();
             questionExample.createCriteria().andIdEqualTo(question.getId());
-            questionMapper.updateByExampleSelective(question,questionExample);
+            int update=questionMapper.updateByExampleSelective(question,questionExample);
+            if(update!=1){
+                throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+            }
         }
         else {
             question.setGmtCreate(System.currentTimeMillis());

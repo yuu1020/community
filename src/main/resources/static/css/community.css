@@ -8,10 +8,10 @@ body{
     margin:30px;
 }
 .pull-right {
-    margin-right: auto;
-    margin-bottom: 15px;
-
+    margin-right: 0px;
+    margin-bottom: 10px;
 }
+
 .text-desc{
     font-size: 15px;
     font-weight: normal;
@@ -19,4 +19,35 @@ body{
 }
 .profile .section{
     margin-top:15px;
+}
+.comment {
+    margin: 15px 0;
+
+}
+.comment-sp{
+    border-bottom: 3px solid #EEEEEE;
+    margin-top: 10px;
+    margin-bottom: 15px;
+
+}
+.menu{
+    color:#999;
+    margin-top: 5px;
+}
+.menu .icon{
+    margin-right: 8px;
+    font-size: 15px;
+    cursor: pointer;
+}
+.menu .active{
+    color:#499ef3;
+}
+.menu .icon:hover{
+    color:#499ef3;
+}
+.sub-comments{
+
+}
+.sub-comments .btn{
+    margin: 10px 0;
 }
