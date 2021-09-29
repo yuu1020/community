@@ -52,8 +52,8 @@ public class CommentController {
         objectObjectHashMap.put("message","成功");
         return objectObjectHashMap;
     }
-    @ResponseBody//使返回的对象自动序列化成json返回前端
-    @RequestMapping(value = "/comment/{id}",method= RequestMethod.POST)
+    @ResponseBody
+    @RequestMapping(value = "/comment/{id}",method= RequestMethod.GET)
     public ResultDTO<List> comments(@PathVariable(name="id")Long id){
         List<CommentDTO> commentDTOS = commentService.listByTargetId(id, CommentTypeEnum.COMMENT);
         return ResultDTO.okOf(commentDTOS);

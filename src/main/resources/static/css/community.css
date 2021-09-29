@@ -1,11 +1,14 @@
 @charset "UTF-8";
 body{
     background-color: #efefef;
+    background:url("/images/img.png")  no-repeat center center;   /*加载背景图*/   /* 背景图不平铺 */
+    background-size:cover;  /* 让背景图基于容器大小伸缩 */
+    background-attachment:fixed;        /* 当内容高度大于图片高度时，背景图像的位置相对于viewport固定 */
 }
-
 .main{
-    background-color: white;
+    background-color: rgba(220,220,220,0.9);
     margin:30px;
+    background-size: contain;
 }
 .pull-right {
     margin-right: 0px;
@@ -50,4 +53,14 @@ body{
 }
 .sub-comments .btn{
     margin: 10px 0;
+}
+.comment-icon{
+    width:43px;
+    height:43px;
+    margin-right: 8px;
+    font-size: 15px;
+    cursor: pointer;
+}
+.thecolor{
+    background-color: rgba(210,210,210,0.95);
 }

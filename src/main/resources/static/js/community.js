@@ -12,11 +12,51 @@ function show(){
 //展开二级评论
 function collapseComments(e){
     var id=e.getAttribute("data-id");
-   var comments= $("#comment-"+id);
-   var commenticon=$("#commenticon-"+id);
-    $(comments).toggleClass("in");
-    $(commenticon).toggleClass("active");
-
+    var subCommentContainer = $("#comment-" + id);
+    //console.log(subCommentContainer.children().length);
+    var comments= $("#comment-"+id);
+    var commenticon=$("#commenticon-"+id);
+    if (subCommentContainer.children().length != 1) {
+        //展开二级评论
+        $(comments).toggleClass("in");
+        $(commenticon).toggleClass("active");
+    }else{
+        $.getJSON("/comment/" + id, function (data) {
+            $.each(data.data.reverse(), function (index, comment) {
+                var mediaLeftElement = $("<div/>", {
+                    "class": "media-left"
+                }).append($("<img/>", {
+                    "class": "media-object img-rounded/ comment-icon",
+                    "src": comment.user.avatarUrl,
+                    "style":"width:43px;height:43px;font-size: 15px;cursor: pointer;"
+                }));
+                var mediaBodyElement = $("<div/>", {
+                    "class": "media-body "
+                }).append($("<h5/>", {
+                    "class": "media-heading",
+                    "html": 'AAAAb'+comment.user.name
+                })).append($("<div/>", {
+                    "html": comment.content
+                })).append($("<div/>", {
+                    "class": "menu"
+                }).append($("<span/>", {
+                    "class": "pull-right",
+                    "html": moment(comment.gmtCreate).format('YYYY-MM-DD')
+                }).append($("<hr/>",{
+                    "class":"col-lg-12 col-md-12 col-sm-12 col-xs-12"
+                }))));
+                var mediaElement = $("<div/>", {
+                    "class": "media"
+                }).append(mediaLeftElement).append(mediaBodyElement);
+                var commentElement = $("<div/>", {
+                    "class": "col-lg-12 col-md-12 col-sm-12 col-xs-12 comments comment-sp"
+                }).append(mediaElement);
+                subCommentContainer.prepend(commentElement);
+            });
+            $(comments).toggleClass("in");
+            $(commenticon).toggleClass("active");
+        });
+    }
 }
 function comment2target(targetId,type,content){
     if (!content) {
