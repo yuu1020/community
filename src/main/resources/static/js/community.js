@@ -42,9 +42,7 @@ function collapseComments(e){
                 }).append($("<span/>", {
                     "class": "pull-right",
                     "html": moment(comment.gmtCreate).format('YYYY-MM-DD')
-                }).append($("<hr/>",{
-                    "class":"col-lg-12 col-md-12 col-sm-12 col-xs-12"
-                }))));
+                })));
                 var mediaElement = $("<div/>", {
                     "class": "media"
                 }).append(mediaLeftElement).append(mediaBodyElement);

@@ -26,6 +26,15 @@
             <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:text="${question.description}"
                  style="word-wrap:break-word"></div>
+            <!---标签---->
+            <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div clas="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <span class="label label-default" th:each="tag:${question.tag.split(',')}">
+                    <span class="glyphicon glyphicon-tags"></span>
+                    <span class="label label-default question-tag" th:text="${tag}"></span>
+                </span>
+            </div>
+
             <!---------------操作栏----------------->
             <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><a th:href="@{/publish/{id} (id=${question.id})}"
@@ -44,9 +53,13 @@
                                                  width="43px" height="43px"></div>
                     <div class="media-body"><h5 class="media-heading" th:text="'AAAAb'+${comment.user.getName()}"></h5>
                         <div th:text="${comment.content}" style="word-wrap:break-word"></div>
-                        <div class="menu"><span class="iconfont icon-dianzan icon"> </span>
-                            <span class="iconfont icon-a-pinglun1 icon" th:data-id="${comment.id}"
-                                th:id="${'commenticon-'+comment.id}" onclick="collapseComments(this)"></span>
+                        <div class="menu">
+                            <span class="iconfont icon-dianzan icon"></span>
+                            <span th:data-id="${comment.id}" th:id="${'commenticon-'+comment.id}" onclick="collapseComments(this)">
+                                <span class="iconfont icon-a-pinglun1 icon" ></span>
+                                <span th:text="${comment.commentCount}"></span>
+                            </span>
+
                             <div class="text-desc pull-right"
                                  th:text="${#dates.format(comment.gmtCreate,'yyyy-MM-dd HH-mm')}"></div>
                         </div>

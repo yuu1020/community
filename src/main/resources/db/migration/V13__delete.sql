@@ -1,0 +1,1 @@
+alter table COMMENT drop column "Comment_Count";

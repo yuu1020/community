@@ -4,10 +4,7 @@ import com.example.community.dto.CommentDTO;
 import com.example.community.enums.CommentTypeEnum;
 import com.example.community.exception.CustomizeErrorCode;
 import com.example.community.exception.CustomizeException;
-import com.example.community.mapper.CommentMapper;
-import com.example.community.mapper.QuestionExtMapper;
-import com.example.community.mapper.QuestionMapper;
-import com.example.community.mapper.UserMapper;
+import com.example.community.mapper.*;
 import com.example.community.model.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +27,8 @@ public class CommentService {
     private QuestionExtMapper questionExtMapper;
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private CommentExtMapper commentExtMapper;
     @Transactional//事务化 此注解下方法视为一个事务
     public void insert(Comment comment){
         if(comment.getParentId()==null||comment.getParentId()==0)
@@ -45,7 +44,7 @@ public class CommentService {
             if(dbquestion==null){
                 throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
             }else{//评论数增加
-                commentMapper.insert(comment);
+                commentMapper.insertSelective(comment);
                 Question record=new Question();
                 record.setId(dbquestion.getId());
                 record.setCommentCount(1);
@@ -57,6 +56,10 @@ public class CommentService {
             if(dbcomment==null){
                 throw new CustomizeException(CustomizeErrorCode.COMMENT_NOT_FOUND);
             }else{
+                Comment record=new Comment();
+                record.setId(comment.getParentId());
+                record.setCommentCount(1);
+                commentExtMapper.incComment(record);
                 commentMapper.insertSelective(comment);
             }
         }
